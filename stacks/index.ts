@@ -1,4 +1,5 @@
 import API from "./api";
+import Storage from "./storage";
 import { App } from "@serverless-stack/resources";
 
 export default function (app: App) {
@@ -9,5 +10,5 @@ export default function (app: App) {
       format: "esm",
     },
   });
-  app.stack(API);
+  app.stack(Storage);
 }
