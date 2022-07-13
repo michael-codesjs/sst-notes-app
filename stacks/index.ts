@@ -10,5 +10,8 @@ export default function (app: App) {
       format: "esm",
     },
   });
-  app.stack(Storage);
+  
+  app
+  .stack(Storage)
+  .stack(API);
 }
