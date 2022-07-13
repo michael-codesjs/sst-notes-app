@@ -1,6 +1,7 @@
 import API from "./api";
 import Storage from "./storage";
 import { App } from "@serverless-stack/resources";
+import Auth from "./auth";
 
 export default function (app: App) {
   app.setDefaultFunctionProps({
@@ -13,5 +14,6 @@ export default function (app: App) {
   
   app
   .stack(Storage)
-  .stack(API);
+  .stack(API)
+  .stack(Auth);
 }

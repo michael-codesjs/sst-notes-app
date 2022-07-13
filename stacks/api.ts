@@ -8,6 +8,7 @@ export default function API({ stack }: StackContext) {
 
   const api = new Api(stack, "API", {
     defaults: {
+      authorizer: "iam",
       function: {
         permissions: [table],
         environment: {
@@ -27,5 +28,7 @@ export default function API({ stack }: StackContext) {
   stack.addOutputs({
     ApiEndpoint: api.url
   });
+
+  return api;
 
 }

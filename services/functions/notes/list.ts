@@ -5,7 +5,7 @@ import dynamoDb from "utilitites/dynamo-db";
 
 export const main = handler(async (event) => {
 
-  const userId = event?.pathParameters?.id;
+  const userId = event?.requestContext.authorizer?.iam.cognitoIdentity.identityId;
 
   const input:QueryInput = {
     TableName: process.env.TABLE_NAME!,
@@ -16,7 +16,7 @@ export const main = handler(async (event) => {
     // 'ExpressionAttributeValues' defines the value in the condition
     // - ':userId': defines 'userId' to be the id of the author
     ExpressionAttributeValues: {
-      ":userId": "123",
+      ":userId": userId,
     } as any,
   };
 
