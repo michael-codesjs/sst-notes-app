@@ -1,8 +1,11 @@
 import { APIGatewayEvent, APIGatewayProxyResult, Context } from "aws-lambda";
 
 export default function handler(lambda: (event?: APIGatewayEvent, context?: Context) => any) {
+
   return async function (event?: APIGatewayEvent, context?: Context) {
+    
     let body, statusCode;
+
     try {
       body = await lambda(event, context);
       statusCode = 200;
@@ -16,6 +19,12 @@ export default function handler(lambda: (event?: APIGatewayEvent, context?: Cont
     return {
       statusCode,
       body: JSON.stringify(body),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
     };
+    
   };
+
 }
